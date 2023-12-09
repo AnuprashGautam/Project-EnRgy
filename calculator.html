@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+
+    <head>
+        <title>My web page</title>
+    </head>
+    <body>
+        <nav class="navbar">
+            <ul>
+                <div class="Logo">
+                    <img src="logo.png"></img>
+                    <p1>EnRgy</p1>
+                </div>
+                <li class="item"><a href='index.html'>Home</a></li>
+                <li class="item"><a href='Resources.html'>Resources</a></li>
+                <li class="item"><a href='schemes.html'>Govt.Schemes</a></li>
+                <li class="item"><a href='calculator.html'>Calculator</a></li>
+                <li class="item"><a href='about.html'>About</a></li>
+                <li class="item"><a href='contact.html'>Contact Us</a></li>
+
+            </ul>
+        </nav>
+        
+            <h1>Carbon Footprint Calculator</h1>
+            <h2>Energy Consumption</h2>
+            <label for="electricity">Electricity Consumption (kWh): </label>
+            <input type="number" id="electricity" min="0">
+            <br>
+            <label for="gas">Gas Consumption (m3): </label>
+            <input type="number" id="gas" min="0">
+            <br>
+            <button onclick="calculateEnergy()">Calculate</button>
+            
+            <h1><small>Results</small></h1>
+            <div id="results"></div>
+            <h2>---------------------------------------------------------------------------------------------------------------</h2>
+            
+
+            <h1>Renewable Energy Savings Calculator</h1>
+
+            <label for="currentEnergy">Current Energy Consumption (kWh):</label>
+            <input type="number" id="currentEnergy" placeholder="Enter current energy consumption"><br>
+
+            <label for="renewablePercentage">Percentage of Renewable Energy (%):</label>
+            <input type="number" id="renewablePercentage" placeholder="Enter renewable energy percentage"><br>
+
+            <button onclick="calculateSavings()">Calculate</button>
+
+            <h1>Estimated Energy Savings:</h1>
+               <p id="savingsResult"></p>
+        
+            <script>
+                function calculateEnergy() {
+                    // Get input values
+                    var electricity = parseFloat(document.getElementById("electricity").value);
+                    var gas = parseFloat(document.getElementById("gas").value);
+                    
+                    // Perform calculations
+                    var carbonFootprint = electricity * 0.6 + gas * 2.3; // Example formula for carbon footprint calculation
+                    
+                    // Display results
+                    var resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = "Your Carbon Footprint: " + carbonFootprint.toFixed(2) + " kgCO2e";
+                }
+                function calculateSavings() {
+                    var currentEnergy = parseFloat(document.getElementById('currentEnergy').value);
+                    var renewablePercentage = parseFloat(document.getElementById('renewablePercentage').value);
+
+                    if (!isNaN(currentEnergy) && !isNaN(renewablePercentage)) {
+                    var renewableEnergy = currentEnergy * (renewablePercentage / 100);
+                    var savings = renewableEnergy * 0.15; // Assuming 15% energy savings from renewable sources
+
+                    document.getElementById('savingsResult').textContent = "By adopting renewable energy solutions, you could potentially save " + savings.toFixed(2) + " kWh of energy.";
+                    } else {
+                    document.getElementById('savingsResult').textContent = "Please enter valid numeric values.";
+                    }
+                }
+            </script>
+        </body>
+</html>
+        
